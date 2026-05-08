@@ -1,0 +1,24 @@
+.DS_Store
+.idea/
+.vscode/
+.code-review-graph/
+target/
+node_modules/
+.pnpm-store/
+services/seed-backend/lib/
+.env
+.env.local
+.env.development.local
+.env.production.local
+*.log
+*.tsbuildinfo
+
+# Local-only — internal planning, smoke reports, CLAUDE orientation, design history.
+# See internal-docs/README.md for what's in there. Never push these; they contain
+# internal reasoning that would mislead external readers.
+CLAUDE.md
+docs/plans/
+programs/agents-network/docs/
+TODO.md
+internal-docs/
+.gstack/

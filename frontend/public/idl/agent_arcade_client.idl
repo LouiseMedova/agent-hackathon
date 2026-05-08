@@ -1,0 +1,70 @@
+
+!@sails: 1.0.0-beta.3
+
+service AgentArcade@0x44f5ca4401378756 {
+    events {
+        BestScoreUpdated {
+            player: ActorId,
+            run_id: u64,
+            previous_best: u32,
+            new_best: u32,
+            tasks_completed: u32,
+            threats_dodged: u32,
+            updated_at: u64,
+        },
+    }
+    functions {
+        @query
+        GameInfo() -> String;
+        @query
+        Leaderboard(limit: u32) -> [LeaderboardEntry] throws ArcadeError;
+        @query
+        PlayerBestScore(player: ActorId) -> Option<PlayerScore>;
+        @query
+        PlayerRank(player: ActorId) -> Option<u32>;
+        @query
+        ScoresCount() -> u32;
+        SubmitScore(score: u32, tasks_completed: u32, threats_dodged: u32) -> SubmitScoreReply throws ArcadeError;
+    }
+    types {
+        enum ArcadeError {
+            InvalidScore,
+            InvalidStats,
+            LimitTooLarge,
+        }
+        struct LeaderboardEntry {
+            rank: u32,
+            player: ActorId,
+            best_score: u32,
+            tasks_completed: u32,
+            threats_dodged: u32,
+            run_id: u64,
+            updated_at: u64,
+        }
+        struct PlayerScore {
+            player: ActorId,
+            best_score: u32,
+            tasks_completed: u32,
+            threats_dodged: u32,
+            run_id: u64,
+            updated_at: u64,
+        }
+        struct SubmitScoreReply {
+            run_id: u64,
+            accepted: bool,
+            improved: bool,
+            previous_best: u32,
+            current_best: u32,
+            rank: Option<u32>,
+        }
+    }
+}
+
+program AgentArcadeClient {
+    constructors {
+        Create();
+    }
+    services {
+        AgentArcade@0x44f5ca4401378756,
+    }
+}
