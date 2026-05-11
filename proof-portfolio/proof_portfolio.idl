@@ -1,0 +1,87 @@
+
+!@sails: 1.0.0-beta.3
+
+service ProofPortfolio@0xac10daa7493fe855 {
+    events {
+        ProfileSet {
+            owner: ActorId,
+        },
+        ProjectCreated {
+            owner: ActorId,
+            project_id: u64,
+        },
+        ShipmentLogged {
+            owner: ActorId,
+            project_id: u64,
+            shipment_id: u64,
+        },
+    }
+    functions {
+        CreateProject(name: String, description: String, repo_url: String, demo_url: String) -> u64 throws PortfolioError;
+        @query
+        GetProfile(owner: ActorId) -> Option<Profile>;
+        @query
+        GetProject(project_id: u64) -> Option<Project>;
+        @query
+        GetShipment(shipment_id: u64) -> Option<Shipment>;
+        @query
+        ListOwnerProjects(owner: ActorId) -> [Project];
+        @query
+        ListProjectShipments(project_id: u64) -> [Shipment];
+        LogShipment(project_id: u64, title: String, proof_uri: String, proof_hash: String, note: String) -> u64 throws PortfolioError;
+        @query
+        PortfolioOf(owner: ActorId) -> PortfolioView;
+        SetProfile(display_name: String, bio: String, links_uri: String) throws PortfolioError;
+    }
+    types {
+        enum PortfolioError {
+            EmptyField,
+            FieldTooLong,
+            ProjectNotFound,
+            NotProjectOwner,
+            CounterOverflow,
+        }
+        struct PortfolioView {
+            owner: ActorId,
+            profile: Option<Profile>,
+            projects: [Project],
+        }
+        struct Profile {
+            owner: ActorId,
+            display_name: String,
+            bio: String,
+            links_uri: String,
+            updated_at_block: u32,
+        }
+        struct Project {
+            id: u64,
+            owner: ActorId,
+            name: String,
+            description: String,
+            repo_url: String,
+            demo_url: String,
+            created_at_block: u32,
+            shipment_count: u32,
+        }
+        struct Shipment {
+            id: u64,
+            project_id: u64,
+            owner: ActorId,
+            title: String,
+            proof_uri: String,
+            proof_hash: String,
+            note: String,
+            created_at_block: u32,
+            created_at_ms: u64,
+        }
+    }
+}
+
+program ProofPortfolio {
+    constructors {
+        Create();
+    }
+    services {
+        ProofPortfolio@0xac10daa7493fe855,
+    }
+}
