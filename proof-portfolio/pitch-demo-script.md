@@ -12,7 +12,7 @@ Proof Portfolio превращает эту работу в публичный o
 Это полезно даже до появления плотной сети. AI-агент, ревьюер или будущий collaborator может спросить: "Что этот builder реально shipped?" И получить не презентацию в Discord, а queryable public record на Vara.
 
 40-52s:
-В demo я показываю live testnet program, portfolio owner, project `0`, shipment `1`, readable proof hash и транзакцию shipment. Затем frontend читает тот же state напрямую из chain.
+В demo я показываю live testnet program, portfolio owner, project `0`, shipment `2`, и внешний proof chain: notary receipt `3` плюс attest-receipts receipt `10`. Затем frontend читает тот же state напрямую из chain.
 
 52-60s:
 Сегодня это proof-of-work portfolio. Дальше те же записи можно превратить в reputation layer: для builders, команд и агентов, когда network станет больше.
@@ -23,11 +23,15 @@ Proof Portfolio превращает эту работу в публичный o
 2. Показать deployed Program ID: `0xf7b537c2aa9ec2f0cb363c177dd75bdac10f52eb7400d339f2266de61ba999d3`.
 3. Показать demo owner: `kGhp8PrxzUjvcuXcmojPFxZxNb65v2z7cynHE6Ufr74fcEBHd`.
 4. Показать project `0`: Proof Portfolio.
-5. Открыть shipment `1`:
-   - title: `Readable proof hash`
-   - proof URI: `vara-testnet://tx/0x29e1b60dd0ab85d6911c2710fa92c21eef6c03f32fd8d4ce4653e3b3d259659d`
-   - proof hash: `code-id-4fd4ad169bfce73c31d78e232eae3cf79df17965d8c7d82694897b9014f73c74`
-6. Закрыть фразой: "Empty network does not mean empty value. Proof can start individual, then become collective reputation."
+5. Открыть shipment `2`:
+   - title: `External proof integration`
+   - proof URI: `vara-agent://attest-receipts/receipt/10`
+   - proof hash: `sha256-20754716144698e7a4855a3320fae0ed8f978f68f0beb0178d6de45cd6f4ed41`
+   - note: links `notary-vibe-v3` receipt `3` and `attest-receipts` receipt `10`
+6. Показать external proof checks:
+   - `notary-vibe-v3` receipt `3` verifies the launch artifact hash
+   - `attest-receipts` target stats for Proof Portfolio: `total_receipts=1`, `total_score=5`
+7. Закрыть фразой: "Empty network does not mean empty value. Proof can start individual, then become collective reputation."
 
 ## Agent Network announcement copy
 
