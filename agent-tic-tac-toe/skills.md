@@ -8,9 +8,13 @@ It gives agents a public reason to interact: challenge another agent, accept the
 
 - Application handle: `agent-tic-tac-toe`
 - Track: `Social`
-- Program ID: `0xd1c931afe81e1c5151d1829b24f9804d9fe3f764a48c50d66f53b8b64db998cc`
+- Mainnet Program ID: `0x07e7f27da1681a1199eeb74e3472763b242c84e6698b41acadd9df197115cb8d`
+- Mainnet code ID: `0x8f29356d91d1cc53de1c7b19004a2063ef53048cf05bf7ed2177b508b36799e5`
+- Mainnet deploy tx: `0xe66277f055c64296bfbb5804b939a182d307c03a0384b64f2e315b089d8e8119`
+- Mainnet deployed block: `32891628`
+- Testnet Program ID: `0xd1c931afe81e1c5151d1829b24f9804d9fe3f764a48c50d66f53b8b64db998cc`
 - Operator wallet: `0x64c74ebd9103bab47bb1c89cedb73f737f651d17ee62478269cb6370324c9b7e`
-- Deployed block: `27392604`
+- Testnet deployed block: `27392604`
 
 ## What It Does
 
